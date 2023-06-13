@@ -24,6 +24,7 @@
                         <td>{{$comic->price}}</td>
                         <td>{{$comic->sale_date}}</td>
                         <td><a href="{{route('comics.show', $comic)}}" class="btn btn-success">Vai</a></td>
+                        <td><a href="{{route('comics.edit', $comic)}}" class="btn btn-warning">Modifica</a></td>
 
                     </tr>
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1  class="my-5">Aggiungi un nuovo fumetto</h1>
+        <h1  class="my-5">Modifica {{ $comic->title }}</h1>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -14,8 +14,10 @@
             </div>
         @endif
 
-        <form action="{{route('comics.store')}}" method="POST">
+        <form action="{{route('comics.update',  $comic)}}" method="POST">
             @csrf
+
+            @method('PUT')
 
             <div class="mb-3">
               <label for="title" class="form-label">Titolo</label>
@@ -24,7 +26,7 @@
                 class="form-control"
                 id="title"
                 name="title"
-                value="{{old('title')}}"
+                value="{{old('title', $comic->title)}}"
                 >
                 @error('title')
                     <p class="text-danger"> {{$message}} </p>
@@ -32,18 +34,18 @@
             </div>
 
             <div class="mb-3">
-                <label for="description" class="form-label">Descrizione</label>
-                <textarea
-                  class="form-control"
-                  id="description"
-                  name="description"
-                  >
-                  {{old('description')}}
-                </textarea>
-                  @error('description')
-                      <p class="text-danger"> {{$message}} </p>
-                  @enderror
-              </div>
+              <label for="description" class="form-label">Descrizione</label>
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                >
+                {{old('description', $comic->description)}}
+              </textarea>
+                @error('description')
+                    <p class="text-danger"> {{$message}} </p>
+                @enderror
+            </div>
 
             <div class="mb-3">
               <label for="thumb" class="form-label">Path img</label>
@@ -52,7 +54,7 @@
                 class="form-control"
                 id="thumb"
                 name="thumb"
-                value="{{old('thumb')}}"
+                value="{{old('thumb', $comic->thumb)}}"
                 >
                 @error('thumb')
                     <p class="text-danger"> {{$message}} </p>
@@ -66,7 +68,7 @@
                 class="form-control"
                 id="price"
                 name="price"
-                value="£{{old('description')}}"
+                value="{{old('price', $comic->price)}}"
                 >
                 @error('price')
                     <p class="text-danger"> {{$message}} </p>
@@ -80,7 +82,7 @@
                   class="form-control"
                   id="series"
                   name="series"
-                  value="{{old('series')}}"
+                  value="{{old('series', $comic->series)}}"
                   >
                   @error('series')
                       <p class="text-danger"> {{$message}} </p>
@@ -94,7 +96,7 @@
                   class="form-control"
                   id="sale_date"
                   name="sale_date"
-                  value="{{old('sale_date')}}"
+                  value="{{old('sale_date', $comic->sale_date)}}"
                   >
                   @error('sale_date')
                       <p class="text-danger"> {{$message}} </p>
@@ -108,7 +110,7 @@
                   class="form-control"
                   id="type"
                   name="type"
-                  value="{{old('type')}}"
+                  value="{{old('type', $comic->type)}}"
                   >
                   @error('type')
                       <p class="text-danger"> {{$message}} </p>
@@ -122,7 +124,7 @@
                   class="form-control"
                   id="artists"
                   name="artists"
-                  value="{{old('artists')}}"
+                  value="{{old('artists', $comic->artists)}}"
                   >
                   @error('artists')
                       <p class="text-danger"> {{$message}} </p>
@@ -136,7 +138,7 @@
                   class="form-control"
                   id="writers"
                   name="writers"
-                  value="{{old('writers')}}"
+                  value="{{old('writers', $comic->writers)}}"
                   >
                   @error('writers')
                       <p class="text-danger"> {{$message}} </p>
